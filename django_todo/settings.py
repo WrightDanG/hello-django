@@ -22,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'l*8+8+4-3uu3=l7_9nbf+y@g7drziuqoz*@jrpsx6@t4uo3fxq'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['dgw-hello-django.herokuapp.com']
+ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 
 
 # Application definition
@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse('postgres://mzcqfymxdrrmiw:77beb392fae93061b5739ab3b728666c468fa8dc138e9676613a203473c18e93@ec2-54-90-13-87.compute-1.amazonaws.com:5432/d3gduf8c917m7f')
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
 
 
